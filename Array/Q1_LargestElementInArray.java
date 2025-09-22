@@ -12,7 +12,7 @@ public class Q1_LargestElementInArray {
         // process -1
         /* int [] arr = {2,5,1,3,6,9,4};
         Arrays.sort(arr);
-        System.out.println(arr[0]);
+        System.out.println(arr[arr.length-1]);
         */
         
         // Process -2
@@ -27,7 +27,7 @@ public class Q1_LargestElementInArray {
                 }
             }
         }
-        System.out.println(Arrays.toString(arr));
+        System.out.println(arr[n-1]);
         */
 
         // Approach-2 : Without sorting the array.     T.C = O(n)
