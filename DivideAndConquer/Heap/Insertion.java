@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 // ------------------------------------Insertion for max heap------------------------
-public class Insertion {
+public class InsertionMaxHeap {
 
 
     int []h;
     int capacity;
     int size;
 
-    public Insertion(int c){
+    public InsertionMaxHeap(int c){
         this.size = 0;
         this.capacity = c;
         h = new int[c];
@@ -44,7 +44,7 @@ public class Insertion {
 
         Scanner sc = new Scanner(System.in);
 
-        Insertion obj = new Insertion(10);
+        InsertionMaxHeap obj = new InsertionMaxHeap(10);
         obj.insert(30);
         obj.insert(31);
         obj.insert(10);
