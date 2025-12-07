@@ -49,9 +49,10 @@ class Node {
         traversal(head);
 
         head=delete(head,key);
-        System.out.println("\nNow head.data = "+head.data);   // 10 
         System.out.print("\nAfter deletion the list looks like this : ");   // 10 20
         traversal(head);
+        System.out.println("\nAfter deletion head.data = "+head.data);   // 10
+
     }
 }
 
