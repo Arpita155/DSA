@@ -24,35 +24,49 @@ public class GasStation {
         }
         return -1;*/
 
-        // ----- Efficient Approach -----
-        int n = gas.length;
+        // ------ Efficient Approach ------ T.C=O(n), S.C=O(n)
+        /*int n = gas.length;
         Deque<Integer> dq = new ArrayDeque<>();
         int currPetrol = 0;
         int i = 0;
+        int count = 0;
 
-        // Loop up to 2 * n to handle the circular wrap-around
-        while (dq.size() < n) {
-            // Add the current station to the back of the queue
-            dq.addLast(i);
-            currPetrol += (gas[i] - cost[i]);
-
-            // Shrink the window from the front if petrol drops below zero
-            while (!dq.isEmpty() && currPetrol < 0) {
-                int removedStation = dq.removeFirst();
-                // Subtract the net petrol of the REMOVED station, not station 'i'
-                currPetrol -= (gas[removedStation] - cost[removedStation]);
+        while(i < n ){
+            dq.add(i);
+            currPetrol += (gas[i]-cost[i]);
+            if(currPetrol < 0){
+                count++;
             }
-
-            // Move to the next station circularly
-            i = (i + 1) % n;
-
-            // If the queue size equals the total number of stations, we found a valid start
-            if (dq.size() == n) {
-                return dq.peekFirst();
+            if(count == n){
+                return -1;
+            }
+            while(currPetrol < 0 && !dq.isEmpty()){
+                int j = dq.removeFirst();
+                currPetrol -= (gas[j]-cost[j]);
+            }
+            i = (i+1)%n;
+            if(!dq.isEmpty() && dq.peekFirst()==i){
+                return i;
             }
         }
 
+        return -1;*/
 
+        // --------- Optimal Approach ------ T.C = O(n), S.C = O(1)
+        int start = 0;
+        int currPetrol = 0;
+        int prevPetrol = 0;
+        for(int i=0;i<gas.length;i++){
+            currPetrol += (gas[i]-cost[i]);
+            if(currPetrol < 0){
+                start = i+1;
+                prevPetrol += currPetrol;
+                currPetrol = 0;
+            }
+        }
+        if(currPetrol + prevPetrol >= 0){
+            return start;
+        }
 
         return -1;
     }
